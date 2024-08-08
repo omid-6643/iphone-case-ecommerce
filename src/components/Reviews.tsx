@@ -20,13 +20,12 @@ function splitArray<T>(array: Array<T>, numParts: number) {
 
   for (let i = 0; i < array.length; i++) {
     const index = i % numParts;
-
     if (!result[index]) {
       result[index] = [];
     }
-
     result[index].push(array[i]);
   }
+
   return result;
 }
 
@@ -42,16 +41,14 @@ function ReviewColumn({
   msPerPixel?: number;
 }) {
   const columnRef = useRef<HTMLDivElement | null>(null);
-
   const [columnHeight, setColumnHeight] = useState(0);
-
   const duration = `${columnHeight * msPerPixel}ms`;
 
   useEffect(() => {
     if (!columnRef.current) return;
 
     const resizeObserver = new window.ResizeObserver(() => {
-      setColumnHeight(columnRef.current?.offsetWidth ?? 0);
+      setColumnHeight(columnRef.current?.offsetHeight ?? 0);
     });
 
     resizeObserver.observe(columnRef.current);
@@ -122,7 +119,7 @@ function ReviewGrid() {
   return (
     <div
       ref={containerRef}
-      className="relative -mx-4 mt-16 grid h-[49px] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3"
+      className="relative -mx-4 mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3"
     >
       {isInView ? (
         <>
